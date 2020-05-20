@@ -1,4 +1,4 @@
-FROM ubuntu-hadoop-flume-kafka-base
+FROM ubuntu-hadoop-kafka-zookeeper-base
 
 USER root
 

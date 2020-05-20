@@ -25,10 +25,10 @@ ENV USR_LOCAL_PATH /usr/local
 # install software
 # install kafka
 ADD ./src/software/kafka_2.11-1.1.0.tgz ${USR_LOCAL_PATH}
-RUN sudo mv ${USR_LOCAL_PATH}/kafka_2.12-2.2.1 ${USR_LOCAL_PATH}/kafka
+RUN sudo mv ${USR_LOCAL_PATH}/kafka_2.11-1.1.0 ${USR_LOCAL_PATH}/kafka
 # install zookeeper
 ADD ./src/software/zookeeper-3.4.13.tar.gz ${USR_LOCAL_PATH}
-RUN sudo mv ${USR_LOCAL_PATH}/zookeeper-3.4.14 ${USR_LOCAL_PATH}/zookeeper
+RUN sudo mv ${USR_LOCAL_PATH}/zookeeper-3.4.13 ${USR_LOCAL_PATH}/zookeeper
 # install flume
 # ADD ./src/software/apache-flume-1.8.0-bin.tar.gz ${USR_LOCAL_PATH}
 # RUN sudo mv ${USR_LOCAL_PATH}/apache-flume-1.8.0-bin ${USR_LOCAL_PATH}/flume
@@ -40,12 +40,16 @@ RUN mkdir /home/hadoop/zookeeper
 RUN mkdir /home/hadoop/zookeeper/data
 # RUN mkdir /home/hadoop/zookeeper/log
 RUN echo "1" > /home/hadoop/zookeeper/data/myid
+# permission zookeeper data dir
+RUN sudo chown -R hadoop:hadoop /home/hadoop/zookeeper
 
 # copy kafka configuration
 ADD ./conf/kafka/* ${KAFKA_HOME}/config/
-# create zookeeper data directory
+# create kafka log directory
 RUN mkdir /home/hadoop/kafka
 RUN mkdir /home/hadoop/kafka/logs
+# permission kafka data dir
+RUN sudo chown -R hadoop:hadoop /home/hadoop/kafka
 
 # permission kafka dir
 RUN sudo chown -R hadoop:hadoop ${KAFKA_HOME}
