@@ -27,6 +27,6 @@
 
    用户大数据环境支持的mysql工程
    
-4. ubuntu-hadoop-flume-kafka-base
+4. ubuntu-hadoop-kafka-zookeeper-cluster
 
    用于kafka，zookeeper集群搭建的Docfile工程
